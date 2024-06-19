@@ -22,19 +22,29 @@ In most cases you would setup *preinit.py*, *lcd-menu.py*, and *shutdown.py* to 
 
 To install, clone this repository onto your NAS somewhere that is accessible to the admin (root) user. It needs to be run *as root* to communicate with the display and the TrueNAS CLI.
 
-To communicate with the display, *pyserial* is required. If you are able to install it with `pip`, that's wonderful, do that!
+#### First:
+- Copy the scripts to your nas via FTP (suggested: /home/admin/QnapLcdMenu).
 
-```
-pip3 install pyserial
-```
+#### In the TrueNAS Web Ui go to System Settings/Advanced/Init&Shutdown Scripts/Add and create the following:
 
-If you are not able to (TrueNAS SCALE), you can use the included `setup.sh` script to install it into the current directory. In the *same directory* as `qnaplcd` (e.g. the root of this project)
+![Screenshot 2024-06-19 at 4 39 01 PM](https://github.com/alfredoarrieta/Qnap-TS-469-Pro-Lcd-Scale/assets/43350012/0eb03f37-d82a-44dd-9dd9-4a322c60b168)
 
-```
-./setup.sh
-```
 
-# Using
 
-Add `lcd-menu.py` in TrueNAS SCALE under *System Settings*, *Advanced*, *Init/Shutdown Scripts* as a pre or post init script.
+#### This is a screenshot of how the configuration should look for the Pre Init:
 
+![Screenshot 2024-06-19 at 4 45 24 PM](https://github.com/alfredoarrieta/Qnap-TS-469-Pro-Lcd-Scale/assets/43350012/26a965ba-c31f-4187-bf00-626418d42c9e)
+
+
+
+#### This is a screenshot of how the configuration should look for the Post Init:
+
+![Screenshot 2024-06-19 at 4 45 39 PM](https://github.com/alfredoarrieta/Qnap-TS-469-Pro-Lcd-Scale/assets/43350012/6c02ca55-07b0-4733-b436-bcf18282704d)
+
+(this one is different because the script should run in a separate thread so the system wont kill it after the set timeout is done):
+
+
+
+#### This is a screenshot of how the configuration should look for the Shutdown:
+
+![Screenshot 2024-06-19 at 4 45 48 PM](https://github.com/alfredoarrieta/Qnap-TS-469-Pro-Lcd-Scale/assets/43350012/2fbb768f-0581-4f82-a677-bd99efb14e3f)
